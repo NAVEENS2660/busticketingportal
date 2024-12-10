@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Seat</title>
+  <style>
+    body {
+      background-color: rgb(156, 156, 156);
+    }
+    
+
+    .busticket {
+      margin-left: 160px;
+      margin-top: -20px;
+    }
+
+    .carousel-inner {
+      margin-top: 5px;
+    }
+
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .bus-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bus-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+    }
+
+    .seat {
+      width: 40px;
+      height: 40px;
+      margin: 5px;
+      background-color: #8fbc8f;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .seat.selected {
+      background-color: #4CAF50;
+    }
+
+    .seat.booked {
+      background-color: #d3d3d3;
+      cursor: not-allowed;
+    }
+
+    .seat-info {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .front {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+    .button2{  
+       background-color: #0022ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .button2:hover {
+      background-color: #10013c;
+    }
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-primary-tertiary" style="background-color:rgb(90, 90, 232)">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="busboostrap.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar" fixed-top">
+    <div class="container-fluid">
+      <img src="naveentavels-removebg-preview.png" class="busticket" width="380px" height="150px">
+      <img src="call.jpg" alt="call" width="50px" height="50px">
+      <p>
+      <h5>For Route Related Enquiry:+99525 52086 </h5>
+      </p>
+      <img src="mail.png" alt="mail" width="35px" height="35px">
+      <p>
+      <h5>Email:naveennj2660@gmail.com</h5>
+      </p>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Naveen Travels</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu dropdown-menu">
+                <li><a class="dropdown-item" href="#">Offers</a></li>
+                <li><a class="dropdown-item" href="#">Luggage</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Ticket Download</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <hr>
+
+  <div class="container">
+    <h1>Bus Seat Selection</h1>
+    <p class="front">Bus Front</p>
+
+    <div class="bus-container">
+      
+      <div class="bus-section">
+        <p>VIP / Special Seats</p>
+        <div class="row">
+          <div class="seat" id="seat1" onclick="selectSeat('seat1')">1</div>
+          <div class="seat" id="seat2" onclick="selectSeat('seat2')">2</div>
+        </div>
+      </div>
+
+    
+      <div class="bus-section">
+        <p>Middle Section</p>
+        <div class="row">
+          <div class="seat" id="seat3" onclick="selectSeat('seat3')">3</div>
+          <div class="seat" id="seat4" onclick="selectSeat('seat4')">4</div>
+          <div class="seat" id="seat5" onclick="selectSeat('seat5')">5</div>
+          <div class="seat" id="seat6" onclick="selectSeat('seat6')">6</div>
+        </div>
+        <div class="row">
+          <div class="seat" id="seat7" onclick="selectSeat('seat7')">7</div>
+          <div class="seat" id="seat8" onclick="selectSeat('seat8')">8</div>
+          <div class="seat" id="seat9" onclick="selectSeat('seat9')">9</div>
+          <div class="seat" id="seat10" onclick="selectSeat('seat10')">10</div>
+        </div>
+      </div>
+
+      
+      <div class="bus-section">
+        <p>Back Section</p>
+        <div class="row">
+          <div class="seat" id="seat11" onclick="selectSeat('seat11')">11</div>
+          <div class="seat" id="seat12" onclick="selectSeat('seat12')">12</div>
+          <div class="seat" id="seat13" onclick="selectSeat('seat13')">13</div>
+          <div class="seat" id="seat14" onclick="selectSeat('seat14')">14</div>
+        </div>
+        <div class="row">
+          <div class="seat" id="seat15" onclick="selectSeat('seat15')">15</div>
+          <div class="seat" id="seat16" onclick="selectSeat('seat16')">16</div>
+          <div class="seat" id="seat17" onclick="selectSeat('seat17')">17</div>
+          <div class="seat" id="seat18" onclick="selectSeat('seat18')">18</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="seat-info">
+      <p><strong>Legend:</strong></p>
+      <p><span style="background-color: #8fbc8f; padding: 5px 10px; border-radius: 4px;"></span> Available Seat</p>
+      <p><span style="background-color: #4CAF50; padding: 5px 10px; border-radius: 4px;"></span> Selected Seat</p>
+      <p><span style="background-color: #d3d3d3; padding: 5px 10px; border-radius: 4px;"></span> Booked Seat</p>
+    </div>
+
+    <center><button onclick="bookSeats()">Seat Confirm</button>
+      <a href="paymentpage.html"><input type="button" value="Payment" class="button2" ></a>
+  </div>
+
+  <script>
+    
+    function selectSeat(seatId) {
+      var seat = document.getElementById(seatId);
+
+      
+      if (seat.classList.contains('booked')) {
+        alert("This seat is already booked!");
+        return;
+      }
+
+     
+      if (seat.classList.contains('selected')) {
+        seat.classList.remove('selected');
+      } else {
+        seat.classList.add('selected');
+      }
+    }
+
+   
+    function bookSeats() {
+      var selectedSeats = document.querySelectorAll('.seat.selected');
+
+      if (selectedSeats.length === 0) {
+        alert("Please select at least one seat.");
+        return;
+      }
+
+     
+      selectedSeats.forEach(function (seat) {
+        seat.classList.remove('selected');
+        seat.classList.add('booked');
+      });
+
+      alert("Seats booked successfully!");
+    }
+  </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

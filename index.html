@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Ticket</title>
+
+  <style>
+    body {
+      background-color: lightgrey;
+    }
+
+    .busticket {
+      margin-left: 160px;
+      margin-top: 5px;
+    }
+
+    .carousel-inner {
+      margin-top: 5px;
+    }
+
+    .con {
+      background-color: white;
+      width: 500px;
+      height: 100px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .book-now {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .book-now:hover {
+      background-color: #45a049;
+    }
+
+    .navi {
+      display: flex;
+      padding: 10px;
+      margin-left: 150px;
+      width: 200px;
+    }
+
+    .navcolor {
+      background-color: #0089cf;
+    }
+
+    .new-form-blk {
+      font-family: 'Roboto';
+      width: 100%;
+      padding: 35px 6% 100px 6%;
+      background: url("https://tyad.travelyaari.com/bus-web/images/home-banner-new.3da77d7d.jpg")no-repeat #0089cf;
+      background-size: cover;
+      background-position: bottom;
+    }
+
+    .header-txt h1 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: .04rem;
+      margin: 0;
+      text-transform: capitalize;
+    }
+
+    .new-form-blk .input-and-btn {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      margin: 35px 0 15px 0;
+      border-radius: 6px;
+      position: relative;
+      width: 100%;
+
+    }
+
+    #search-form {
+      display: flex;
+    }
+
+    .new-form-blk .input-and-btn form>div {
+      display: flex;
+      width: calc(50% - 61px);
+
+    }
+
+    #selectDate {
+      border-left: 1px solid #ddd;
+      width: calc(50% - 61px);
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group {
+      width: 50%;
+      padding: 10px 25px 0 20px;
+      background: #fff;
+      border-right: 1px solid #ddd;
+      position: relative;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group:hover {
+      box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, .5);
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group.isFocus {
+      box-shadow: 0 0 0 2px #F99F1C;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group label {
+      color: #666666;
+      font-family: Roboto;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .04rem;
+      padding-top: 7px;
+      display: block;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group label #err-from-city {
+      color: #f15a22;
+      font-size: .7rem;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group label #err-to-city {
+      color: #f15a22;
+      font-size: .7rem;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group .clear-button {
+      position: absolute;
+      font-size: 25pt;
+      right: 8px;
+      top: 15px;
+      cursor: pointer;
+      color: #aaa;
+      font-weight: 400;
+    }
+
+    .new-form-blk .input-and-btn form div:first-child .ty-input-group:first-child .clear-button {
+      right: 22px;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group .cal-ico {
+      position: absolute;
+      right: 8px;
+      top: 49%;
+      top: calc(50% - 10px) !important;
+      width: 25px;
+      height: 25px;
+      pointer-events: none;
+      background: url("https://tyad.travelyaari.com/bus-web/images/calander-icon.53918328.png");
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: inherit;
+      color: #202020;
+      padding-top: 5px;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .04rem;
+
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group.invalidInput {
+      box-shadow: 0 0 0 2px #F15A22;
+      background: #FFF1E2 !important;
+    }
+
+    input::placeholder {
+      color: #999;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .04rem;
+    }
+
+    .new-form-blk .input-and-btn form div:first-child .ty-input-group:first-child {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .new-form-blk .input-and-btn form>div .ty-input-group:last-child {
+      border-right: none;
+      padding-left: 30px;
+    }
+
+    #selectDate>div:last-child {
+      padding-left: 20px;
+    }
+
+    .new-form-blk .input-and-btn form .ty-button {
+      color: #fff;
+      width: 124px;
+      padding: 10px 8px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .04rem;
+      background-color: #F15922;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      cursor: pointer;
+      animation: glow 2s ease;
+    }
+
+    .new-form-blk .input-and-btn form .ty-button:hover {
+      background: #d9511f;
+    }
+
+    .new-txt-blk {
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+
+
+    }
+
+    .new-txt-blk>div {
+      padding: 0 40px;
+      border-right: 1px solid #4daddd;
+      text-align: center;
+    }
+
+    .new-txt-blk>div div:first-child {
+      opacity: 0.6;
+      color: #FFFFFF;
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 500;
+      padding-bottom: 5px;
+      letter-spacing: .04rem;
+    }
+
+    .new-txt-blk>div:last-child {
+      border-right: none;
+    }
+
+    .new-txt-blk>div div:last-child {
+      opacity: 0.6;
+      color: #FFFFFF;
+      font-family: Roboto;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .04rem;
+    }
+
+    #reverse-cities {
+      cursor: pointer;
+      position: absolute;
+      float: none;
+      top: 17px;
+      left: 43%;
+      left: calc(25% - 52px);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #00AEEF;
+      -webkit-box-shadow: 0 1px 5px #666;
+      box-shadow: 0 1px 5px #666;
+      padding: 15px 0 10px;
+      z-index: 10;
+    }
+
+    #reverse-cities span:first-child {
+      top: 17px;
+    }
+
+    #reverse-cities>* {
+      position: absolute;
+      right: 0;
+      left: 0;
+      width: 23px;
+      height: 2px;
+      margin: auto;
+    }
+
+    #reverse-cities span:before {
+      width: 23px;
+    }
+
+    #reverse-cities span:after,
+    #reverse-cities span:before {
+      content: ' ';
+      height: 2px;
+      background: #fff;
+      position: absolute;
+    }
+
+    #reverse-cities span:after {
+      width: 10px;
+      transform: rotate(-35deg);
+      transform-origin: 0 0;
+    }
+
+    #reverse-cities span:last-child {
+      bottom: 17px;
+      transform: rotate(180deg);
+    }
+
+    @media screen and (max-width:1100px) {
+      #search-form {
+        display: block;
+      }
+
+      .new-form-blk .input-and-btn form>div {
+        padding: 10px 0 15px 0;
+        width: 100%;
+      }
+
+      .new-form-blk .input-and-btn form>div .ty-input-group {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        border-right: none;
+      }
+
+      .new-form-blk .input-and-btn {
+        box-shadow: none;
+      }
+
+      #selectDate {
+        border-left: none;
+        width: 100%;
+      }
+
+      .ty-input-group {
+        border-radius: 6px;
+      }
+
+      #selectDate .ty-input-group {
+        overflow: hidden;
+      }
+
+      .new-form-blk .input-and-btn form>div>div {
+        margin-right: 20px;
+      }
+
+      .new-form-blk .input-and-btn form>div>div:last-child {
+        margin-right: 0;
+      }
+
+      .new-form-blk .input-and-btn form>div .ty-input-group:last-child {
+        padding-left: 20px;
+      }
+
+      .new-form-blk .input-and-btn form .ty-button {
+        width: 100%;
+        border-radius: 2px;
+        text-align: center;
+        margin-top: 10px;
+        animation: glow 2s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      #reverse-cities {
+        top: 24px;
+        left: calc(50% - 20px);
+        margin-right: 0;
+      }
+
+      .new-form-blk .input-and-btn {
+        margin-top: 0;
+      }
+
+      .new-form-blk .input-and-btn form div:first-child .ty-input-group:first-child .clear-button {
+        right: 13px;
+      }
+
+      .new-form-blk .input-and-btn form>div .ty-input-group .clear-button {
+        right: 13px;
+        top: 13px;
+      }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-primary-tertiary" style="background-color:rgb(90, 90, 232)">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar" fixed-top">
+    <div class="container-fluid">
+      <img src="naveentavels-removebg-preview.png" class="busticket" width="380px" height="150px">
+      <img src="call.jpg" alt="call" width="50px" height="50px">
+      <p>
+      <h5>For Route Related Enquiry:+99525 52086 </h5>
+      </p>
+      <img src="mail.png" alt="mail" width="35px" height="35px">
+      <p>
+      <h5>Email:naveennj2660@gmail.com</h5>
+      </p>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Naveen Travels</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu dropdown-menu">
+                <li><a class="dropdown-item" href="#">Offers</a></li>
+                <li><a class="dropdown-item" href="#">Luggage</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Ticket Download</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="carouselExampleFade" class="carousel slide carousel-fade">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="naveenbus1.png" class="d-block w-100" alt="bus1">
+      </div>
+      <div class="carousel-item">
+        <img src="naveenbus2.png" class="d-block w-100" alt="bus2">
+      </div>
+      <div class="carousel-item">
+        <img src="naveenbus3.png" class="d-block w-100" alt="bus3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <section class="new-form-blk">
+    <div class="header-txt">
+      <h1>Online bus ticket booking platform</h1>
+    </div>
+    <div class="input-and-btn">
+      <form id="search-form">
+        <div>
+          <div class="ty-input-group">
+            <label for="from-city">From<span id="err-from-city" style="display:none; position:absolute;">City not found.
+                Check spelling or select from list</span></label>
+            <input type="password" name="password"
+              style="position:absolute;opacity:0;height:0px;width:0px;margin:0px;padding:0px">
+            <input id="from-city" style="padding-bottom:15px" type="text" placeholder="Starting city"
+              autocomplete="nope" tabindex="1">
+            <span class="clear-button">&times;</span>
+          </div>
+          <div id="reverse-cities" class="ty-float-round icon-reverse"> <span></span> <span></span> </div>
+          <div class="ty-input-group">
+            <label for="to-city">To <span id="err-to-city" style="display:none;position:absolute;">City not found. Check
+                spelling or select from list</span></label>
+            <input type="password" name="password"
+              style="position:absolute;opacity:0;height:0px;width:0px;margin:0px;padding:0px">
+            <input id="to-city" type="text" style="padding-bottom:15px" placeholder="Destination city"
+              autocomplete="nope" tabindex="2">
+            <span class="clear-button">&times;</span>
+          </div>
+        </div>
+        <div id="selectDate">
+          <div class="ty-input-group">
+            <label for="from-date">Journey date</label>
+            <input id="from-date" class="ty-datepicker" style="margin-left:-20px;padding-left:20px;padding-bottom:15px"
+            <input type="date" id="from date" name="from date">
+            <span class="clear-button">&times;</span>
+          </div>
+          <div class="ty-input-group">
+            <label for="return-date">Return date</label>
+            <input id="return-date" class="ty-datepicker" style="margin-left:-20px;padding-left:20px;padding-bottom:15px"
+            <input type="date" id="to date" name="to date">
+            <span class="clear-button">&times;</span>
+          </div>
+        </div>
+        <a href="busnextpage.html"><input type="button" value="Search Bus" class="ty-button ty-button-orange" style="height:100px;" ></a>
+        
+      </form>
+    </div>
+    <div class="new-txt-blk">
+      <div>
+        <div>2,000,000 +</div>
+        <div>Customers served</div>
+      </div>
+      <div>
+        <div>150,000 +</div>
+        <div>Routes</div>
+      </div>
+      <div>
+        <div>5,795 +</div>
+        <div>Operators</div>
+      </div>
+    </div>
+    <marquee>
+      <h1>Welcome To Naveen Travels</h1>
+    </marquee>
+
+
+   
+<footer class="bg-dark text-white pt-4 pb-2" >
+  <div class="container">
+    <div class="row">
+      <!-- Column 1 -->
+      <div class="col-md-4">
+        <h5>About Us</h5>
+        <p>Naveen Travels & Transports</p>
+      </div>
+
+    
+      <div class="col-md-4">
+        <h5>Contact</h5>
+        <ul class="list-unstyled">
+          <li>212 Address Kanniyan kinaru,kangayam</li>
+          <li>Email: naveennj2660@gmail.com</li>
+          <li>Phone: 99525 52086</li>
+        </ul>
+      </div>
+
+     
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white">Facebook</a></li>
+          <li><a href="#" class="text-white">Twitter</a></li>
+          <li><a href="#" class="text-white">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="text-center mt-4">
+      <p class="mb-0">&copy; 2001 Naveen Travels & Transports. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   
+</body>
+
+</html>
